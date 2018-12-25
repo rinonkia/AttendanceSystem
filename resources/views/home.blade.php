@@ -5,19 +5,20 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
-
+                <div class="card-header text-center">勤怠入力</div>
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    <dl class="row">
+                        <dt class="col-sm-3">名前</dt>
+                        <dt class="col-sm-9 text-center">{{ Auth::user()->name }}</dt>
+                        <dt class="col-sm-3">ログインID</dt>
+                        <dt class="col-sm-9 text-center">{{ Auth::user()->loginid }}s</dt>
+                    </dl>
 
-                    You are logged in!
                 </div>
+
             </div>
         </div>
     </div>
 </div>
+
 @endsection
