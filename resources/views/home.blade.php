@@ -1,30 +1,24 @@
-<!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE-edge">
-    <meta name="viewpoint" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+@extends('layouts.app')
 
-    <title>Attendance</title>
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header text-center">勤怠入力</div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-3">名前</dt>
+                        <dt class="col-sm-9 text-center">{{ Auth::user()->name }}</dt>
+                        <dt class="col-sm-3">ログインID</dt>
+                        <dt class="col-sm-9 text-center">{{ Auth::user()->loginid }}s</dt>
+                    </dl>
 
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+                </div>
 
-    <style>
-        html, body {
-            background-color: #fff;
-            color: #636b6f;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 200;
-            height: 100vh;
-            margin: 0;
-        }
-    </style>
-</head>
-<body>
-    <div id="app">
-        //
+            </div>
+        </div>
     </div>
-    
-</body>
-</html>
+</div>
+
+@endsection
