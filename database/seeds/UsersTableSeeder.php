@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder
                 [
                     'name' => 'test_user',
                     'loginid' => 'user001',
-                    'password' => 'user001',
+                    'password' => Hash::make('password'),
                     'role' => 10,
                 ],
             ]);
