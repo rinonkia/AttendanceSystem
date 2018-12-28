@@ -27,4 +27,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token', 'role',
     ];
+
+    /**
+     * Timestamp関連付け
+     * 1対多
+     */
+    public function timestamp()
+    {
+        $this->hasMany(Timestamp::class);
+    }
 }
