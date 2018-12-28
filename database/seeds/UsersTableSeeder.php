@@ -15,12 +15,18 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert(
             [
                 [
-                    'name' => 'メイプル ノブ',
-                    'loginid' => 'maple_nobu',
+                    'name' => '管理者',
+                    'loginid' => 'admin',
                     'password' => Hash::make('password'),
-                ]
-            ]
-                );
+                    'role' => 5,
+                ],
+                [
+                    'name' => 'test_user',
+                    'loginid' => 'user001',
+                    'password' => 'user001',
+                    'role' => 10,
+                ],
+            ]);
         factory(App\User::class, 20)->create();
     }
 }

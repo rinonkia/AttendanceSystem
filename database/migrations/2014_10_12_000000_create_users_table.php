@@ -17,9 +17,8 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('loginid')->unique()->comment('ログインID');
-            //$table->string('email')->unique();
-            //$table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->tinyInteger('role')->unsigned()->default(10)->comment('権限0:system  5:admin  10:user');
             $table->rememberToken();
             $table->timestamps();
         });
