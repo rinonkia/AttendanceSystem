@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use App\User;
 
 
 class UserController extends Controller
@@ -12,6 +13,10 @@ class UserController extends Controller
     {
         Log::Debug(__CLASS__.':'.__FUNCTION__);
 
-        return view('admin.index');
+        $users = User::paginate(10);
+
+        return view('admin.user.index', [
+            'users' => $users
+        ]);
     }
 }
