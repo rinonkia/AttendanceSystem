@@ -19,6 +19,9 @@
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+  
+  
 </head>
 <body>
   <div id="app">
@@ -52,6 +55,11 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  @can('admin')
+                    <a class="dropdown-item" href="{{ url('admin/user/index') }}">
+                    {{ __('ユーザー一覧') }}
+                  </a>
+                  @endcan 
                   <a class="dropdown-item" href="{{ route('logout') }}"
                      onclick="event.preventDefault();
                            document.getElementById('logout-form').submit();">
