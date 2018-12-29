@@ -19,6 +19,21 @@ class TimestampsController extends Controller
             'punchIn' => Carbon::now()
         ]);
 
-        return redirect()->back()->with('my_status', '打刻が完了しました');
+        return redirect()->back()->with('my_status', '出勤打刻が完了しました');
+    }
+    public function punchOut()
+    {
+        $user = Auth::user();
+        $timestamp = Timestamp::where('user_id', $user->id)->latest()->first();
+
+        if( !empty($timestamp->punchOut)) {
+            return redirect()->back()->with('error', '既に退勤の打刻がされているか、出勤打刻されていません');
+        }
+        $timestamp->update([
+            'punchOut' => Carbon::now()
+        ]);
+
+        return redirect()->back()->with('my_status', '退勤打刻が完了しました');
+
     }
 }
