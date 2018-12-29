@@ -25,4 +25,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth', 'can:admin']], function() {
     Route::get('admin/user/index', 'UserController@index')->name('admin/user/index');
+    Route::get('admin/user/show/{id}', 'UserController@show')->name('admin/user/show');
 });

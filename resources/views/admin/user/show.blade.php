@@ -13,32 +13,30 @@
                     </dl>
                 </div>
                 <div class="user-content">
+                    <div class="identity">
+                        <tr>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->loginid }}</td>
+                        </ol>
+                    </div>
                     <div class="table-responsive">
                         <table class="table-striped table-boarder">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>LoginID</th>
-                                    <th>名前</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($users as $user)
+                            <tbody> <!-- 
                                     <tr>
                                         <td>{{ $user->id }}</td>
-                                        <td><a href="{{ route('admin/user/show', $user->id) }}">{{ $user->loginid }}</a></td>
+                                        <td>{{ $user->loginid }}</td>
                                         <td>{{ $user->name }}</td>
                                     </tr>
-                                @endforeach
+                                -->
                             </tbody>
                         </table>
                     </div>
                 </div>
-                {{ $users->links() }}
             </div>
         </div>
         
     </div>
+
 
 
 @endsection
