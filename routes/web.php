@@ -27,3 +27,8 @@ Route::group(['middleware' => ['auth', 'can:admin']], function() {
     Route::get('admin/user/index', 'UserController@index')->name('admin/user/index');
     Route::get('admin/user/show/{id}', 'UserController@show')->name('admin/user/show');
 });
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::post('/punchin', 'TimestampsController@punchIn')->name('timestamp/punchin');
+    Route::post('/punchout', 'TimestampsController@punchOut')->name('timestamp/punchout');
+});

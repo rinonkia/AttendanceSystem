@@ -18,7 +18,13 @@
                         <dt class="col-sm-3">ログインID</dt>
                         <dt class="col-sm-9 text-center">{{ Auth::user()->loginid }}</dt>
                     </dl>
-
+                    <div class="button-form">
+                        <form action="{{ route('timestamp/punchin') }}" method="POST">
+                            @csrf
+                            @method('POST')
+                            <button type="submit" class="btn btn-primary">出勤</button>
+                        </form>
+                    </div>
                 </div>
 
             </div>
