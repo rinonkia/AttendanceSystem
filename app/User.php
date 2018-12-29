@@ -34,6 +34,6 @@ class User extends Authenticatable
      */
     public function timestamp()
     {
-        $this->hasMany(Timestamp::class);
+        return $this->hasMany(Timestamp::class);
     }
 }

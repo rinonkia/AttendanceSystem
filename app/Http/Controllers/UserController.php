@@ -26,8 +26,11 @@ class UserController extends Controller
 
         $user = User::find($id);
 
+        $timestamps = $user->timestamp()->paginate(30);
+
         return view('admin/user/show', [
-            'user' => $user
+            'user' => $user,
+            'timestamps' => $timestamps,
         ]);
     }
 }
