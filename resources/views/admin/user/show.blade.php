@@ -21,13 +21,21 @@
                     </div>
                     <div class="table-responsive">
                         <table class="table-striped table-boarder">
-                            <tbody> <!-- 
-                                    <tr>
-                                        <td>{{ $user->id }}</td>
-                                        <td>{{ $user->loginid }}</td>
-                                        <td>{{ $user->name }}</td>
-                                    </tr>
-                                -->
+                            <thead>
+                                <tr>
+                                    <th>出勤</th>
+                                    <th>退勤</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if($timestamps)
+                                    @foreach($timestamps as $timestamp)
+                                        <tr>
+                                            <td>{{ $timestamp->punchIn }}</td>
+                                            <td>{{ $timestamp->punchOut }}</td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>

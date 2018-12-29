@@ -16,10 +16,16 @@ class TimestampsController extends Controller
         $user = Auth::user();
 
         /**
-         * 打刻は1日一回までにしたい
+         * 打刻は1日一回までにしたい  保留
          */
-        //$odlTimestamp = Timestamp::where('user_id', $user->id)->latest()->first();
-        //$TimestampDay[] = explode(' ', $oldTimestamp->punchIn);
+        // $odlTimestamp = Timestamp::where('user_id', $user->id)->latest()->first();
+        // $oldTimestampDay[] = explode(' ', $oldTimestamp->punchIn);
+
+        // $todayAndDaytime = Carbon::now();
+        // $today = explode(' ', $todayAndDaytime);
+        // if ($oldTimestampDay[0] === $today[0]) {
+        //    return redirect()->back()->with('error', '既に打刻されているか、もしくは働きすぎです');
+        //}
 
         $timestamp = Timestamp::create([
             'user_id' => $user->id,
@@ -41,6 +47,5 @@ class TimestampsController extends Controller
         ]);
 
         return redirect()->back()->with('my_status', '退勤打刻が完了しました');
-
     }
 }
