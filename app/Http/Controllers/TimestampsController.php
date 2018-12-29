@@ -14,6 +14,13 @@ class TimestampsController extends Controller
     public function punchIn()
     {
         $user = Auth::user();
+
+        /**
+         * 打刻は1日一回までにしたい
+         */
+        //$odlTimestamp = Timestamp::where('user_id', $user->id)->latest()->first();
+        //$TimestampDay[] = explode(' ', $oldTimestamp->punchIn);
+
         $timestamp = Timestamp::create([
             'user_id' => $user->id,
             'punchIn' => Carbon::now()
