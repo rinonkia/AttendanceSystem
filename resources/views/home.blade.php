@@ -24,6 +24,11 @@
                             @method('POST')
                             <button type="submit" class="btn btn-primary">出勤</button>
                         </form>
+                        <form action="{{ route('timestamp/punchout') }}" method="POST">
+                            @csrf
+                            @method('POST')
+                            <button type="submit" class="btn btn-success">退勤</button>
+                        </form>
                     </div>
                 </div>
 
