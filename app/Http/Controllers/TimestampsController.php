@@ -19,6 +19,6 @@ class TimestampsController extends Controller
             'punchIn' => Carbon::now()
         ]);
 
-        return redirect()->back()->with('打刻が完了しました');
+        return redirect()->back()->with('my_status', '打刻が完了しました');
     }
 }
