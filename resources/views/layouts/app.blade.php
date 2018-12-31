@@ -57,7 +57,7 @@
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                   @can('admin')
                     <a class="dropdown-item" href="{{ url('admin/user/index') }}">
-                    {{ __('ユーザー一覧') }}
+                    {{ __('ユーザ一覧') }}
                   </a>
                   @endcan 
                   <a class="dropdown-item" href="{{ route('logout') }}"

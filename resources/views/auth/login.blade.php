@@ -60,6 +60,7 @@
               </div>
             </div>
           </form>
+          @include('introduce')
         </div>
       </div>
     </div>
