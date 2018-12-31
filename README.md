@@ -45,7 +45,13 @@ class TimestampsController extends Controller
 
 ## データ処理について
   どのようにDBに時間が格納されるのか順を追って説明したいと思います。
-View → Route → Controller → （Model）でredirect backしています。
+  
+先に順序をお伝えすると以下になります。
+ - View
+ - Route
+ - Controller （Model）
+
+では、コードを見ていきます。
 ```
 // resouses/views/home.blade.php
 
