@@ -13,7 +13,7 @@
 
             <div class="form-group row">
 
-              <label for="loginid" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+              <label for="loginid" class="col-sm-4 col-form-label text-md-right">{{ __('Login ID') }}</label>
 
               <div class="col-md-6">
                 <input id="loginid" type="text" class="form-control{{ $errors->has('loginid') ? ' is-invalid' : '' }}" name="loginid" value="{{ old('loginid') }}" required autofocus>
