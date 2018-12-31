@@ -43,6 +43,50 @@ class TimestampsController extends Controller
 
 その他、気付きがあったものを書き記します。
 
+## データの受け渡しについて
+  どのようにDBに時間が格納されるのか順を追って説明したいと思います。
+
+```
+// resouses/views/home.blade.php
+
+<div class="button-form">
+    <ul>
+        <li>
+            <form action="{{ route('timestamp/punchin') }}" method="POST">
+                @csrf
+                @method('POST')
+                <button type="submit" class="btn btn-primary">出勤</button>
+            </form>
+        </li>
+        <li>
+            <form action="{{ route('timestamp/punchout') }}" method="POST">
+                @csrf
+                @method('POST')
+                <button type="submit" class="btn btn-success">退勤</button>
+            </form>
+        </li>
+    </ul>
+</div>
+
+```
+フォームのsubmitボタン(出勤)を押下すると、`route('timestamp/punchin')`のルートメソッドに飛びます。
+
+```
+// rotes/web.php
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::post('/punchin', 'TimestampsController@punchIn')->name('timestamp/punchin');
+    Route::post('/punchout', 'TimestampsController@punchOut')->name('timestamp/punchout');
+});
+```
+一行目:ユーザのログインしているかチェックしています。問題なければ二行目の`name('timestamp/punchin')`と名付けられたルートメソッド`Route::post('/punchin', 'TimestampsController@punchIn')`が動きます。  
+　このメソッドは「`TimestampsController`の`punchIn`メソッドの処理を行え」ということです。第一引数の`/puchin`はURLパラメータです。ここではあまり気にしなくて良いと思います。
+
+```
+
+```
+
+
 
 ## 初期ルーティング
 
