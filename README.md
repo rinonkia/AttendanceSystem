@@ -10,7 +10,7 @@ Vue.jsとの共同開発にてスタッフ勤怠管理用アプリを作成中�
 追記：Laravelerの方からCarbonをお聞きしました。こちらで実装したいと思います。
 
 ## Carbon
-***
+
 
  Carbonを使えば簡単にDBに打刻時間を格納できます。
 使用したいコントローラに`Carbon\Carbon`をインポート
@@ -44,7 +44,7 @@ class TimestampsController extends Controller
 その他、気付きがあったものを書き記します。
 
 ## データ処理について
-  どのようにDBに時間が格納されるのか順を追って説明したいと思います。
+　どのようにDBに時間が格納されるのか順を追って説明したいと思います。
   
 先に順序をお伝えすると以下になります。
  - View
@@ -75,7 +75,7 @@ class TimestampsController extends Controller
 </div>
 
 ```
-フォームのsubmitボタン(出勤)を押下すると、`route('timestamp/punchin')`のルートメソッドに飛びます。
+フォームのsubmitボタン(出勤)を押下すると、`route('timestamp/punchin')`のルートメソッドに飛びます。
 
 ```
 // rotes/web.php
@@ -85,8 +85,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/punchout', 'TimestampsController@punchOut')->name('timestamp/punchout');
 });
 ```
-一行目:ユーザのログインしているかチェックしています。問題なければ二行目の`name('timestamp/punchin')`と名付けられたルートメソッド`Route::post('/punchin', 'TimestampsController@punchIn')`が動きます。  
-　このメソッドは「`TimestampsController`の`punchIn`メソッドの処理を行え」ということです。第一引数の`/puchin`はURLパラメータです。ここではあまり気にしなくて良いと思います。
+一行目:ユーザのログインしているかチェックしています。問題なければ二行目の`name('timestamp/punchin')`と名付けられたルートメソッド`Route::post('/punchin', 'TimestampsController@punchIn')`が動きます。  
+　このメソッドは「`TimestampsController`の`punchIn`メソッドの処理を行う」ということです。第一引数の`/puchin`はURLパラメータです。ここではあまり気にしなくて良いと思います。
 
 ```
 // app/Http/Controllers/TimestampsController 
