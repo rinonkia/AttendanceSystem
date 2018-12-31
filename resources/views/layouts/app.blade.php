@@ -58,7 +58,10 @@
                   @can('admin')
                     <a class="dropdown-item" href="{{ url('admin/user/index') }}">
                     {{ __('ユーザ一覧') }}
-                  </a>
+                    </a>
+                    <a class="dropdown-item" href="{{ url('home') }}">
+                      {{ __('打刻ページ') }}
+                    </a>
                   @endcan 
                   <a class="dropdown-item" href="{{ route('logout') }}"
                      onclick="event.preventDefault();
