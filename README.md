@@ -83,9 +83,23 @@ Route::group(['middleware' => 'auth'], function() {
 　このメソッドは「`TimestampsController`の`punchIn`メソッドの処理を行え」ということです。第一引数の`/puchin`はURLパラメータです。ここではあまり気にしなくて良いと思います。
 
 ```
+// app/Http/Controllers/TimestampsController 
 
+class TimestampsController extends Controller
+{
+    public function punchIn()
+    {
+        $user = Auth::user();
+
+        $timestamp = Timestamp::create([
+            'user_id' => $user->id,
+            'punchIn' => Carbon::now()
+        ]);
+
+        return redirect()->back()->with('my_status', '出勤打刻が完了しました');
 ```
-
+`TimestampsController`の`punchIn()`メソッドの処理が書かれています。
+簡単にいうと「ボタンを押したユーザidとボタンを押した時間を取得し、DBにcreate」しています
 
 
 ## 初期ルーティング
