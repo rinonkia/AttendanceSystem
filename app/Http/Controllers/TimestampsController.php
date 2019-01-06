@@ -18,11 +18,20 @@ class TimestampsController extends Controller
         /**
          * 打刻は1日一回までにしたい  保留
          */
-        // $odlTimestamp = Timestamp::where('user_id', $user->id)->latest()->first();
-        // $oldTimestampDay[] = explode(' ', $oldTimestamp->punchIn);
+        $oldTimestamp = Timestamp::where('user_id', $user->id)->latest()->first();
+        if ($oldTimestamp) {
+            $oldTimestampDay = $this->timestampParseDay($oldTimestamp->punchIn);
+        }
 
-        // $todayAndDaytime = Carbon::now();
-        // $today = explode(' ', $todayAndDaytime);
+        //dd($oldTimestampDay);
+
+        $todayTimestamp = Carbon::now();
+        $newTimestampDay = $this->timestampParseDay($todayTimestamp);
+        //dd($newTimestampDay);
+
+        if (($oldTimestampDay == $newTimestampDay) && (empty($oldTimestamp->punchOut))){
+            return redirect()->back()->with('error', 'すでに出勤打刻がされています');
+        }
         // if ($oldTimestampDay[0] === $today[0]) {
         //    return redirect()->back()->with('error', '既に打刻されているか、もしくは働きすぎです');
         //}
@@ -34,6 +43,7 @@ class TimestampsController extends Controller
 
         return redirect()->back()->with('my_status', '出勤打刻が完了しました');
     }
+
     public function punchOut()
     {
         $user = Auth::user();
@@ -47,5 +57,17 @@ class TimestampsController extends Controller
         ]);
 
         return redirect()->back()->with('my_status', '退勤打刻が完了しました');
+    }
+    /**
+     * Y-m-d H:m:s から　Y-m-dを取り出す
+     */
+    public function timestampParseDay($timestamp)
+    {
+        $parseTimestamp[] = explode(' ', $timestamp);
+        $parseDay = $parseTimestamp[0][0];
+
+        //dd($parseTimestamp);
+
+        return $parseDay;
     }
 }
