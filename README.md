@@ -1,20 +1,24 @@
 # AttendanceSystem
 
 Vue.jsとの共同開発にてスタッフ勤怠管理用アプリを作成中ですが、Laravelだけで勤怠管理アプリを作成したことがなく、不明点が多かったため検証のため作成しました。
-作成において特に気になった点は、以下になります。
+作成において特に気になった点は、以下になります。<br>
  - スタッフが打刻ボタンを押した際、DBに時刻を格納する方法、dateTime型かstring型にするか
  - 最低限のバリデーションをどこまで実装すれば良いか
    - 退勤打刻は出勤打刻が済んでいないと押せないようにする。
    - 出勤打刻済みの状態で出勤打刻が押せないようにする。
 
-追記：Laravelerの方からCarbonをお聞きしました。こちらで実装したいと思います。
+追記：Laravelベテランの方からCarbonが便利だと教えていただきました。<br>
+こちらで実装したいと思います。<br>
 
 ## Carbon
 
+composerでCarbonをインストール<br>
 
- Carbonを使えば簡単にDBに打刻時間を格納できます。
-使用したいコントローラに`Carbon\Carbon`をインポート
-`Carbon::now()`を使えば現在時刻を取得できます。
+```composer require nesbot/carbon```
+
+ Carbonを使えば簡単にDBに打刻時間を格納できます。<br>
+使用したいコントローラに`Carbon\Carbon`をインポート<br>
+`Carbon::now()`を使えば現在時刻を取得できます。<br>
 ```
 <?php
 namespace App\Http\Controllers;
@@ -41,17 +45,19 @@ class TimestampsController extends Controller
 
 
 
-その他、気付きがあったものを書き記します。
+その他、気付きがあったものを書き記します。<br>
 
 ## データ処理について
-　どのようにDBに時間が格納されるのか順を追って説明したいと思います。
+　どのようにDBに時間が格納されるのか順を追って説明したいと思います。<br>
   
-先に順序をお伝えすると以下になります。
+先に順序をお伝えすると以下になります。<br>
+
  - View
  - Route
  - Controller （Model）
 
-では、コードを見ていきます。
+では、コードを見ていきます。<br>
+
 ```
 // resouses/views/home.blade.php
 
@@ -75,7 +81,7 @@ class TimestampsController extends Controller
 </div>
 
 ```
-フォームのsubmitボタン(出勤)を押下すると、`route('timestamp/punchin')`のルートメソッドに飛びます。
+フォームのsubmitボタン(出勤)を押下すると、`route('timestamp/punchin')`のルートメソッドに飛びます。<br>
 
 ```
 // rotes/web.php
@@ -85,8 +91,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/punchout', 'TimestampsController@punchOut')->name('timestamp/punchout');
 });
 ```
-一行目:ユーザのログインしているかチェックしています。問題なければ二行目の`name('timestamp/punchin')`と名付けられたルートメソッド`Route::post('/punchin', 'TimestampsController@punchIn')`が動きます。  
-　このメソッドは「`TimestampsController`の`punchIn`メソッドの処理を行う」ということです。第一引数の`/puchin`はURLパラメータです。ここではあまり気にしなくて良いと思います。
+一行目:ユーザのログインしているかチェックしています。問題なければ二行目の`name('timestamp/punchin')`と名付けられたルートメソッド`Route::post('/punchin', 'TimestampsController@punchIn')`が動きます。  <br>
+　このメソッドは「`TimestampsController`の`punchIn`メソッドの処理を行う」ということです。第一引数の`/puchin`はURLパラメータです。ここではあまり気にしなくて良いと思います。<br>
 
 ```
 // app/Http/Controllers/TimestampsController 
@@ -104,8 +110,8 @@ class TimestampsController extends Controller
 
         return redirect()->back()->with('my_status', '出勤打刻が完了しました');
 ```
-`TimestampsController`の`punchIn()`メソッドの処理が書かれています。
-簡単にいうと「ボタンを押したユーザidとボタンを押した時間を取得し、DBにcreate」しています
+`TimestampsController`の`punchIn()`メソッドの処理が書かれています。<br>
+簡単にいうと「ボタンを押したユーザidとボタンを押した時間を取得し、DBにcreate」しています<br>
 
 
 ## 初期ルーティング
@@ -116,6 +122,7 @@ Route::get('/', function () {
 })->middleware('auth');
 ```
 
-`"/"`は`middleware('auth')`を通過できないため`'/login'`にリダイレクト
+`"/"`は`middleware('auth')`を通過できないため`'/login'`にリダイレクト<br>
+
 [AttendanceSystem/app/Http/Middleware/Authenticate.php](https://github.com/rinonkia/AttendanceSystem/blob/52e6a70118ca7e1e1ae5fa28bb8fb9bad03b3dee/app/Http/Middleware/Authenticate.php#L15)
 
