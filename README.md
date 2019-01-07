@@ -92,7 +92,7 @@ Route::group(['middleware' => 'auth'], function() {
 });
 ```
 一行目:ユーザのログインしているかチェックしています。問題なければ二行目の`name('timestamp/punchin')`と名付けられたルートメソッド`Route::post('/punchin', 'TimestampsController@punchIn')`が動きます。  <br>
-　このメソッドは「`TimestampsController`の`punchIn`メソッドの処理を行う」ということです。第一引数の`/puchin`はURLパラメータです。ここではあまり気にしなくて良いと思います。<br>
+　このメソッドは「`TimestampsController`の`punchIn`メソッドの処理を行う」ということです。第一引数の`/puchin`はURLパラメータです。ここではあまり気にしなくて良いと思います。<br>
 
 ```
 // app/Http/Controllers/TimestampsController 
