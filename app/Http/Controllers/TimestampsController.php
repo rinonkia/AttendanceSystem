@@ -16,15 +16,16 @@ class TimestampsController extends Controller
         $user = Auth::user();
 
         /**
-         * 打刻は1日一回までにしたい  
+         * 打刻は1日一回までにしたい 
+         * DB
          */
         $oldTimestamp = Timestamp::where('user_id', $user->id)->latest()->first();
         if ($oldTimestamp) {
-            $oldTimestampDay = $this->timestampParseDay($oldTimestamp->punchIn);
+            $oldTimestampPunchIn = new Carbon($oldTimestamp->punchIn);
+            $oldTimestampDay = $oldTimestampPunchIn->startOfDay();
         }
-
-        $todayTimestamp = Carbon::now();
-        $newTimestampDay = $this->timestampParseDay($todayTimestamp);
+        
+        $newTimestampDay = Carbon::today();
 
         /**
          * 日付を比較する。同日付の出勤打刻で、かつ直前のTimestampの退勤打刻がされていない場合エラーを吐き出す。
@@ -35,7 +36,7 @@ class TimestampsController extends Controller
 
         $timestamp = Timestamp::create([
             'user_id' => $user->id,
-            'punchIn' => $todayTimestamp,
+            'punchIn' => Carbon::now(),
         ]);
 
         return redirect()->back()->with('my_status', '出勤打刻が完了しました');
@@ -54,15 +55,5 @@ class TimestampsController extends Controller
         ]);
 
         return redirect()->back()->with('my_status', '退勤打刻が完了しました');
-    }
-    /**
-     * Y-m-d H:m:s から　Y-m-dだけを取り出す
-     */
-    public function timestampParseDay($timestamp)
-    {
-        $parseTimestamp[] = explode(' ', $timestamp);
-        $parseDay = $parseTimestamp[0][0];
-
-        return $parseDay;
     }
 }
