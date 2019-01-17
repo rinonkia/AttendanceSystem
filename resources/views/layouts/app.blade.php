@@ -59,7 +59,7 @@
                     <a class="dropdown-item" href="{{ url('admin/user/index') }}">
                     {{ __('ユーザ一覧') }}
                     </a>
-                    <a class="dropdown-item" href="{{ url('home') }}">
+                    <a class="dropdown-item" href="{{ url('/') }}">
                       {{ __('打刻ページ') }}
                     </a>
                   @endcan 

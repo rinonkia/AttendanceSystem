@@ -1,6 +1,8 @@
 # AttendanceSystem
 
-Vue.jsとの共同開発にてスタッフ勤怠管理用アプリを作成中ですが、Laravelだけで勤怠管理アプリを作成したことがなく、不明点が多かったため検証のため作成しました。
+Vue.jsとの共同開発にてスタッフ勤怠管理用アプリを作成中ですが、<br>
+Laravelだけで勤怠管理アプリを作成したことがなく、不明点が多かったため検証のため作成しました。<br>
+
 作成において特に気になった点は、以下になります。<br>
  - スタッフが打刻ボタンを押した際、DBに時刻を格納する方法、dateTime型かstring型にするか
  - 最低限のバリデーションをどこまで実装すれば良いか
@@ -12,9 +14,11 @@ Vue.jsとの共同開発にてスタッフ勤怠管理用アプリを作成中�
 
 ## Carbon
 
-composerでCarbonをインストール<br>
+コマンドにてCarbonをインストール<br>
 
-```composer require nesbot/carbon```
+```
+composer require nesbot/carbon
+```
 
  Carbonを使えば簡単にDBに打刻時間を格納できます。<br>
 使用したいコントローラに`Carbon\Carbon`をインポート<br>
