@@ -14,7 +14,7 @@
                 </div>
                 <div class="user-content">
                     <div class="table-responsive">
-                        <table class="table-striped table-boarder">
+                        <table class="table-striped table-bordered">
                             <thead>
                                 <tr>
                                     <th>ID</th>

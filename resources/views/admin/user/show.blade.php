@@ -20,7 +20,7 @@
                         </ol>
                     </div>
                     <div class="table-responsive">
-                        <table class="table-striped table-boarder">
+                        <table class="table-striped table-bordered">
                             <thead>
                                 <tr>
                                     <th>出勤</th>
