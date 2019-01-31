@@ -30,3 +30,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/punchin', 'TimestampsController@punchIn')->name('timestamp/punchin');
     Route::post('/punchout', 'TimestampsController@punchOut')->name('timestamp/punchout');
 });
+
+// Other 
+Route::get('/{any}', function() {
+    return view('home');
+})->middleware('auth')->where('any','.*');
