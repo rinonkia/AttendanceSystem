@@ -22,6 +22,14 @@ class TimestampsController extends Controller
         if ($oldTimestamp) {
             $oldTimestampPunchIn = new Carbon($oldTimestamp->punchIn);
             $oldTimestampDay = $oldTimestampPunchIn->startOfDay();
+        } else {
+            $timestamp = Timestamp::create([
+                'user_id' => $user->id,
+                'punchIn' => Carbon::now(),
+            ]);
+
+            return redirect()->back()->with('my_status', '出勤打刻が完了しました');
+
         }
         
         $newTimestampDay = Carbon::today();
